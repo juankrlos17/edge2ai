@@ -1,0 +1,4 @@
+pandas
+pyspark
+scikit-learn
+numpy==1.22.4
