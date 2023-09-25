@@ -30,8 +30,7 @@ schemaData = StructType([StructField("0", DoubleType(), True),
                          StructField("11", DoubleType(), True),          
                          StructField("12", IntegerType(), True)])
 
-iot_data = spark.read.schema(schemaData).csv('/user/' 
-                                             + os.environ['HADOOP_USER_NAME'] 
+iot_data = spark.read.schema(schemaData).csv('/home/cdsw/data'  
                                              + '/historical_iot.txt')
 
 
