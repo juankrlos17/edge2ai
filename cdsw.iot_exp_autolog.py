@@ -69,7 +69,7 @@ param_maxDepth = int(10)
 param_impurity = 'gini'
 
 
-
+mlflow.autolog()
 
 randF=RandomForestClassifier(n_jobs=17,
                              n_estimators=param_numTrees, 
@@ -105,28 +105,18 @@ print(auroc, ap)
 
 #Track experiment to MlFlow
 
-tags = {
-    "engineering": "ML Platform",
-    "release.candidate": "RC1",
-    "release.version": "2.2.0"
-}
-
 mlflow.set_experiment("test2")
 
-with mlflow.start_run(run_name="W-artifact"):
-  #mlflow.start_run(run_name="W-artifact")
-  mlflow.log_param("num_Trees",param_numTrees)
-  mlflow.log_param("max_depth",param_maxDepth)
+## If mlflow.autolog() is disabled  following parameters need to be disabled
+#mlflow.start_run(run_name="test5")
+#mlflow.log_param("num_Trees",param_numTrees)
+#mlflow.log_param("max_depth",param_maxDepth)
 
-  mlflow.log_metric("auroc", auroc)
-  mlflow.log_metric("ap",ap)
+#mlflow.log_metric("auroc", auroc)
+#mlflow.log_metric("ap",ap)
 
-
-
-  mlflow.set_tags(tags)
-
-  #mlflow.log_metric("model_path", explainedmodel.model_path)  
-  mlflow.log_artifacts("data", artifact_path="states")
+#mlflow.log_metric("model_path", explainedmodel.model_path)  
+#mlflow.log_artifacts("data", artifact_path="states")
             
 mlflow.end_run()
 
